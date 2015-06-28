@@ -41,10 +41,10 @@ def MesseDistanz():
 		StopZeit = time.time()
 
 	# Abstand anhand der Signal-Laufzeit berechnen
-	# Schallgeschwindigkeit: 34.300 cm/s (bei 20°C Lufttemperatur)
+	# Schallgeschwindigkeit: 343,50 m/s (bei 20°C Lufttemperatur)
 	# Formel: /Signallaufzeit in Sekunden * Schallgeschwindigket in cm/s) / 2 (wg. Hin- und Rückweg des Signals)
 	SignalLaufzeit = StopZeit - StartZeit
-	Distanz = (SignalLaufzeit/2) * 34300
+	Distanz = (SignalLaufzeit/2) * 34350
 
 	return [Distanz, (SignalLaufzeit*1000/2)]
 

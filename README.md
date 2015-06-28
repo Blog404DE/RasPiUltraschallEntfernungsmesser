@@ -24,4 +24,29 @@ Bei den angegebenen Preise handelt es sich um Durchschnittspreise für Deutschla
 
 ### Funktionsweise:
 
-(more to come)
+Ziel des Aufbaus ist es, die Entfernung zu einem Gegenstand mittels Ultraschallpuls zu ermitteln. Verwendet wird hierfür das Ultraschall-Messmodul [HC-SR04](http://www.mikrocontroller.net/attachment/218122/HC-SR04_ultraschallmodul_beschreibung_3.pdf). Das Modul ist dabei in der Lage eine Entfernungsmessung im Bereich 2cm bis ~3 Meter durchzuführen mit einer Genauigkeit von ±3mm. 
+
+Da Ultraschall durch Gegenstände reflektiert wird, kann mittels der Zeit zwischen absenden und empfangen des Schall die Entfernung berechnet werden. Bei einer Lufttemperatur von 20°C breitet sich Ultraschall 343,5 m/s aus, sodass mittels folgender Formel die Entfernung berechnet werden kann:
+
+> Distanz [cm] = (Signallaufzeit [Sek] / 2) * 34350 [cm/sek]
+
+## Aufbau:
+
+![](https://github.com/Blog404DE/RasPiUltraschallEntfernungsmesser/raw/master/Schaltplan/Schaltplan.png =250x) 
+
+still to come
+
+
+## Script
+
+still to come
+
+
+___
+**Lizenz-Information:**
+
+Copyright Jens Dutzi 2015 / Stand: 28.06.2015
+
+![Lizenz](http://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png).
+
+Dieses Werk ist lizenziert unter einer [Creative Commons Namensnennung - Nicht-kommerziell - Weitergabe unter gleichen Bedingungen 4.0 International Lizenz.](http://creativecommons.org/licenses/by-nc-sa/4.0/)
