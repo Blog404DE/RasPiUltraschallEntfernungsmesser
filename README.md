@@ -84,6 +84,7 @@ Für den Raspberry wird empfiehlt sich Raspbian als System zu verwenden, welches
 # Lizenz: MIT Lizenz (siehe LICENSE)
 # -----------------------------------
 
+
 # import required modules
 import time
 import RPi.GPIO as GPIO
@@ -97,9 +98,10 @@ def MesseDistanz():
 	# Trigger auf "high" setzen (Signal senden)
 	GPIO.output(GPIOTrigger, True)
 
-	# Trigger nach 10µs auf "low" setzen (Signal beenden)
-	# ggf. je nach RaspberryPi auf 0.0005 setzen
+	# Signal für 10µs senden (ggf. je nach RaspberryPi auf 0.0005 setzen)
 	time.sleep(0.00001)
+	
+	# Trigger auf "low setzen (Signal beenden)
 	GPIO.output(GPIOTrigger, False)
 
 	# Aktuelle Zeit setzen
@@ -108,7 +110,7 @@ def MesseDistanz():
 
 	# Warte bis "Echo" auf "low" gesetzt wird und setze danach Start-Zeit erneut
 	while GPIO.input(GPIOEcho) == 0:
-		SartZeit = time.time()
+		StartZeit = time.time()
 
 	# Warte bis "Echo" auf "high" wechselt (Signal wird empfangen) und setze End-Zeit
 	while GPIO.input(GPIOEcho) == 1:
