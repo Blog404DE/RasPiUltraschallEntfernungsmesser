@@ -158,15 +158,28 @@ Download: [getDistance.py](https://raw.githubusercontent.com/Blog404DE/RasPiUltr
 
 ### Wie führe ich eine Messung aus?
 
-Nachdem Sie das Script auf Ihren RaspberryPi geladen haben, können Sie es direkt mittels folgendem Befehl aufrufen:
+Nachdem Sie das Script auf Ihren RaspberryPi geladen haben, können Sie es direkt mittels folgendem Befehl aufrufen. Bitte beachten Sie, dass der Zugriff auf die GPIO Ports nur als *root* möglich ist:
 
-> python getDistance.py
+> root@raspberrypi:~# python getDistance.py
 
 Alternativ können Sie getDistance.py auch direkt ausführbar machen und sich das "python" beim aufrufen sparen. Hierzu ist nur folgendes notwendig:
 
-> chmod +x getDistance.py
+> root@raspberrypi:~# chmod +x getDistance.py
+
+Die Ausgabe des Python Scripts sieht wie folgt aus:
+
+```
+root@raspberrypi:~# ./entfernung.py
+Gemessene Entfernung: 22.5 cm (Signallaufzeit: 0.6559ms)
+Gemessene Entfernung: 22.9 cm (Signallaufzeit: 0.6690ms)
+Gemessene Entfernung: 22.9 cm (Signallaufzeit: 0.6690ms)
+Gemessene Entfernung: 22.5 cm (Signallaufzeit: 0.6560ms)
+Gemessene Entfernung: 22.9 cm (Signallaufzeit: 0.6670ms)
+```
 
 Das Programm ermittelt kontinuierlich den Abstand und kann mittels *STRG+C* beendet werden. 
+
+
 
 ___
 **Lizenz-Information:**
