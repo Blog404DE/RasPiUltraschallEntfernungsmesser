@@ -30,13 +30,15 @@ Da Ultraschall durch Gegenstände reflektiert wird, kann mittels der Zeit zwisch
 
 > Distanz [cm] = (Signallaufzeit [Sek] / 2) * 34350 [cm/sek]
 
+Bei der Formel stellt sich vielleicht die Frage, warum eigentlich die Signallaufzeit halbiert wird. Wenn wir uns das Script genau anschauen, wird die Laufzeit des Signals direkt beim absenden des Ultraschall-Pulses angefangen zu messen und hört auf, sobald das Echo-Signal wieder am Sensor ankommt. Dies hat zwangsweise die Folge, dass ich die Zeit für den Hin- und Rückweg habe. Für die Berechnung des Abstandes brauche ich allerdings nur die Zeit, die für einen der beide Wege benötigt wird - also die hälfte des Weges. Um dies zu erreichen wird die Laufzeit einfach halbiert.
+
 ## Aufbau der Hardware:
 
 ### HC-SR04 Ultraschall-Sensor:
 
 ![Ultraschall Sensor](https://github.com/Blog404DE/RasPiUltraschallEntfernungsmesser/raw/master/Bilder/HC-SR04.jpg) 
 
-###### Anschlüsse:
+#### Anschlüsse:
 1. Vcc (+5V)
 2. Trigger
 3. Echo
@@ -68,7 +70,7 @@ Downloads-URLs für den Schaltplan in verschiedene Formate:
 
 ## Aufbau der Software
 
-Für den Raspberry wird empfiehlt sich Raspbian als System zu verwenden, welches über z.B. über [NOOB](https://www.raspberrypi.org/downloads/) installiert werden kann. Mittels eines Python-Scripts  kann die Messung durchgeführt werden.
+Für den RaspberryPi wird empfiehlt sich Raspbian als System zu verwenden, welches über z.B. über [NOOB](https://www.raspberrypi.org/downloads/) installiert werden kann. Mittels eines Python-Scripts  kann die Messung durchgeführt werden.
 
 #### Python-Script "getDistance.py"
 
