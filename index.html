@@ -116,9 +116,109 @@
 </ul>
 
 <h2>
-<a id="script" class="anchor" href="#script" aria-hidden="true"><span class="octicon octicon-link"></span></a>Script</h2>
+<a id="aufbau-der-software" class="anchor" href="#aufbau-der-software" aria-hidden="true"><span class="octicon octicon-link"></span></a>Aufbau der Software</h2>
 
-<p>still to come</p>
+<p>Für den Raspberry wird empfiehlt sich Raspbian als System zu verwenden, welches über z.B. über <a href="https://www.raspberrypi.org/downloads/">NOOB</a> installiert werden kann. Mittels eines Python-Scripts  kann die Messung durchgeführt werden.</p>
+
+<h4>
+<a id="python-script-getdistancepy" class="anchor" href="#python-script-getdistancepy" aria-hidden="true"><span class="octicon octicon-link"></span></a>Python-Script "getDistance.py"</h4>
+
+<div class="highlight highlight-python"><pre><span class="pl-c">#!/usr/bin/env python</span>
+<span class="pl-c"># -*- coding: utf-8 -*-</span>
+
+<span class="pl-c"># Entfernungsmesser für RaspberryPi</span>
+<span class="pl-c"># Version 1.0</span>
+<span class="pl-c">#</span>
+<span class="pl-c"># Copyright: tfnApps.de Jens Dutzi</span>
+<span class="pl-c"># Datum: 27.06.2015</span>
+<span class="pl-c"># Lizenz: MIT Lizenz (siehe LICENSE)</span>
+<span class="pl-c"># -----------------------------------</span>
+
+
+<span class="pl-c"># import required modules</span>
+<span class="pl-k">import</span> time
+<span class="pl-k">import</span> RPi.GPIO <span class="pl-k">as</span> GPIO
+
+<span class="pl-c"># define GPIO pins</span>
+GPIOTrigger <span class="pl-k">=</span> <span class="pl-c1">18</span>
+GPIOEcho    <span class="pl-k">=</span> <span class="pl-c1">24</span>
+
+<span class="pl-c"># Funktion zum messen der Entfernung</span>
+<span class="pl-k">def</span> <span class="pl-en">MesseDistanz</span>():
+    <span class="pl-c"># Trigger auf "high" setzen (Signal senden)</span>
+    GPIO.output(GPIOTrigger, <span class="pl-c1">True</span>)
+
+    <span class="pl-c"># Signal für 10µs senden (ggf. je nach RaspberryPi auf 0.0005 setzen)</span>
+    time.sleep(<span class="pl-c1">0.00001</span>)
+
+    <span class="pl-c"># Trigger auf "low setzen (Signal beenden)</span>
+    GPIO.output(GPIOTrigger, <span class="pl-c1">False</span>)
+
+    <span class="pl-c"># Aktuelle Zeit setzen</span>
+    StartZeit <span class="pl-k">=</span> time.time()
+    StopZeit <span class="pl-k">=</span> StartZeit
+
+    <span class="pl-c"># Warte bis "Echo" auf "low" gesetzt wird und setze danach Start-Zeit erneut</span>
+    <span class="pl-k">while</span> GPIO.input(GPIOEcho) <span class="pl-k">==</span> <span class="pl-c1">0</span>:
+        StartZeit <span class="pl-k">=</span> time.time()
+
+    <span class="pl-c"># Warte bis "Echo" auf "high" wechselt (Signal wird empfangen) und setze End-Zeit</span>
+    <span class="pl-k">while</span> GPIO.input(GPIOEcho) <span class="pl-k">==</span> <span class="pl-c1">1</span>:
+        StopZeit <span class="pl-k">=</span> time.time()
+
+    <span class="pl-c"># Abstand anhand der Signal-Laufzeit berechnen</span>
+    <span class="pl-c"># Schallgeschwindigkeit: 343,50 m/s (bei 20°C Lufttemperatur)</span>
+    <span class="pl-c"># Formel: /Signallaufzeit in Sekunden * Schallgeschwindigket in cm/s) / 2 (wg. Hin- und Rückweg des Signals)</span>
+    SignalLaufzeit <span class="pl-k">=</span> StopZeit <span class="pl-k">-</span> StartZeit
+    Distanz <span class="pl-k">=</span> (SignalLaufzeit<span class="pl-k">/</span><span class="pl-c1">2</span>) <span class="pl-k">*</span> <span class="pl-c1">34350</span>
+
+    <span class="pl-k">return</span> [Distanz, (SignalLaufzeit<span class="pl-k">*</span><span class="pl-c1">1000</span><span class="pl-k">/</span><span class="pl-c1">2</span>)]
+
+<span class="pl-c"># main function</span>
+<span class="pl-k">def</span> <span class="pl-en">main</span>():
+    <span class="pl-k">try</span>:
+        <span class="pl-k">while</span> <span class="pl-c1">True</span>:
+            Ergebnis <span class="pl-k">=</span> MesseDistanz()
+            <span class="pl-k">print</span>(<span class="pl-s"><span class="pl-pds">"</span>Gemessene Entfernung: <span class="pl-c1">%.1f</span> cm (Signallaufzeit: <span class="pl-c1">%.4f</span>ms)<span class="pl-pds">"</span></span> <span class="pl-k">%</span> (Ergebnis[<span class="pl-c1">0</span>], Ergebnis[<span class="pl-c1">1</span>]))
+            time.sleep(<span class="pl-c1">1</span>)
+
+    <span class="pl-c"># reset GPIO settings if user pressed Ctrl+C</span>
+    <span class="pl-k">except</span> <span class="pl-c1">KeyboardInterrupt</span>:
+        <span class="pl-k">print</span>(<span class="pl-s"><span class="pl-pds">"</span>Messung abgebrochen<span class="pl-pds">"</span></span>)
+        GPIO.cleanup()
+
+<span class="pl-k">if</span> <span class="pl-c1">__name__</span> <span class="pl-k">==</span> <span class="pl-s"><span class="pl-pds">'</span>__main__<span class="pl-pds">'</span></span>:
+    <span class="pl-c"># benutze GPIO Pin Nummerierung-Standard (Broadcom SOC channel)</span>
+    GPIO.setmode(GPIO.BCM)
+
+    <span class="pl-c"># Initialisiere GPIO Ports</span>
+    GPIO.setup(GPIOTrigger, GPIO.OUT)
+    GPIO.setup(GPIOEcho, GPIO.IN)
+
+    <span class="pl-c"># Setze GPIO Trigger auf false</span>
+    GPIO.output(GPIOTrigger, <span class="pl-c1">False</span>)
+
+    <span class="pl-c"># Main-Funktion starten</span>
+    main()</pre></div>
+
+<p>Download: <a href="https://raw.githubusercontent.com/Blog404DE/RasPiUltraschallEntfernungsmesser/master/Code/getDistance.py">getDistance.py</a></p>
+
+<h3>
+<a id="wie-führe-ich-eine-messung-aus" class="anchor" href="#wie-f%C3%BChre-ich-eine-messung-aus" aria-hidden="true"><span class="octicon octicon-link"></span></a>Wie führe ich eine Messung aus?</h3>
+
+<p>Nachdem Sie das Script auf Ihren RaspberryPi geladen haben, können Sie es direkt mittels folgendem Befehl aufrufen:</p>
+
+<blockquote>
+<p>python getDistance.py</p>
+</blockquote>
+
+<p>Alternativ können Sie getDistance.py auch direkt ausführbar machen und sich das "python" beim aufrufen sparen. Hierzu ist nur folgendes notwendig:</p>
+
+<blockquote>
+<p>chmod +x getDistance.py</p>
+</blockquote>
+
+<p>Das Programm ermittelt kontinuierlich den Abstand und kann mittels <em>STRG+C</em> beendet werden. </p>
 
 <hr>
 
@@ -126,9 +226,7 @@
 
 <p>Copyright Jens Dutzi 2015 / Stand: 28.06.2015</p>
 
-<p><img src="http://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" alt="Lizenz">.</p>
-
-<p>Dieses Werk ist lizenziert unter einer <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Namensnennung - Nicht-kommerziell - Weitergabe unter gleichen Bedingungen 4.0 International Lizenz.</a></p>
+<p>Dieses Werk ist lizenziert unter der <a href="https://github.com/Blog404DE/RasPiUltraschallEntfernungsmesser/blob/master/LICENSE">MIT Lizenz</a>.</p>
         </section>
 
         <aside id="sidebar">
