@@ -5,22 +5,28 @@
 
 Diese Anleitung beschreibt, wie man mit wenigen Bauteilen und einem RaspberryPi einen Ultraschall-basierenden Entfernungsmesser baut.
 
-### Bauteil-Liste:
+### Raspberry Pi Basis:
 
-* 1x RaspberryPi B, B+ oder 2 (inkl. Netzteil, SD bzw. MicroSD Karte, Tastatur) - ca. 60 Eur 
-* 1x Steckplatine (Breadboard small+ oder full+) - ca. 8 Eur
-* 1x Steckbrücken-Set für die Steckplatine - ca. 5 Eur
-* 1x Set mit Male-Female Steckbrücken (Jumper Wires)¹ - ca. 5 Eur
-* 1x Ultraschall Messmodul HC-SR04 - ca. 5 Eur
-* 1x Widerstand mit 330Ω - ca. 2 Eur
-* 1x Widerstand mit 470Ω - ca. 2 Eur
+* 1x RaspberryPi 2 ([Amazon](http://amzn.to/1HWR3hM))
+* 1x MicroUSB-Netzteil (~2A) ([Amazon](http://amzn.to/1Cxknv6))
+* 1x 8 oder 16GB MicroSD Karte ([Amazon](http://amzn.to/1KZHwZT))
+* 1x USB-Tastatur oder USB Tastatur/Maus Kombi ([Amazon](http://amzn.to/1KZHLUF))
 
-¹ Alternativ zu den Male-Female Steckbrücken kann auch ein Breadboard-Adapter für die Verbindung zum RaspberryPi verwendet werden - ca. 8 Eur
+Alternativ kann auch ein Vorgänger-Modell des RaspberryPi 2 verwendet werden. Hierfür wird anstatt einer MicroSD eine SD Card benötigt. Im Prinzip kann jede USB Tastatur verwendet werden.
 
-**Gesamtkosten:** Die Kosten für alle benötigten Bauteile betragen ca. 80 bis 90 Eur. 
+Dieses Set dient als Basis für praktisch alle Raspberry Pi Projekte. Der RaspberryPi 2 bietet gegenüber seinen Vorgänger-Modellen u.a. eine höhere CPU Geschwindigkeit, mehr Arbeitsspeicher und 4 anstatt 2 USB Anschlüsse. Je nach Projekt kann dies durchaus von Vorteil sein. 
 
-Bei den angegebenen Preise handelt es sich um Durchschnittspreise für Deutschland zum Zeitpunkt der Erstellung des Tutorials. Die benötigten Teile sollten sich bei den meisten Elektronik-Händler, die auch ein RaspberryPi im Sortiment führen, zu finden sein.
+### Bauteil-Liste für den Entfernungsmesser:
 
+* 1x Steckplatine / Breadboard small+ oder full+ ([Amazon](http://amzn.to/1HVmfOs))
+* 1x Steckbrücken-Set für die Steckplatine ([Amazon](http://amzn.to/1HokKqB))
+* 1x Set mit Male-Female Steckbrücken (Jumper Wires)¹ ([Amazon](http://amzn.to/1HWMDHV))
+* 1x Ultraschall Messmodul HC-SR04 ([Amazon](http://amzn.to/1HWMp3j))
+* Widerstände mit 1x330Ω und 1x470Ω (z.B. im großen durchmischten Set bei [Amazon](http://B009K6JLSM), ansonsten einzeln bei [Reichelt](http://www.reichelt.de/), [Conrad](http://www.conrad.de/) oder [ELV](http://www.elv.de/))
+
+¹ Alternativ zu den Male-Female Steckbrücken kann auch ein Breadboard-Adapter für die Verbindung zum RaspberryPi verwendet werden
+
+*Hinweis zu den Amazon-Links:* Alle Artikel-Links beinhalten Amazon Partner-Links. Mit der Bestellung über diese Links unterstützen Sie dieses Blog und erlauben uns weitere RaspberryPi Projekte hier zu veröffentlichen.
 
 ### Funktionsweise:
 
