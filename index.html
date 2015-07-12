@@ -1,34 +1,25 @@
 <!DOCTYPE html>
-<html>
+<html lang="en-us">
   <head>
-    <meta charset='utf-8'>
-    <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <link href='https://fonts.googleapis.com/css?family=Architects+Daughter' rel='stylesheet' type='text/css'>
+    <meta charset="UTF-8">
+    <title>Rasberry Pi Ultraschall-Entfernungsmesser by Blog404DE</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
     <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
-    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print">
-
-    <!--[if lt IE 9]>
-    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
-
-    <title>Rasberry Pi Ultraschall-Entfernungsmesser by Blog404DE</title>
   </head>
-
   <body>
-    <header>
-      <div class="inner">
-        <h1>Rasberry Pi Ultraschall-Entfernungsmesser</h1>
-        <h2>Ultraschall Entfernungsmesser auf Basis eines Raspberry Pi</h2>
-        <a href="https://github.com/Blog404DE/RasPiUltraschallEntfernungsmesser" class="button"><small>View project on</small> GitHub</a>
-      </div>
-    </header>
+    <section class="page-header">
+      <h1 class="project-name">Rasberry Pi Ultraschall-Entfernungsmesser</h1>
+      <h2 class="project-tagline">Ultraschall Entfernungsmesser auf Basis eines Raspberry Pi</h2>
+      <a href="https://github.com/Blog404DE/RasPiUltraschallEntfernungsmesser" class="btn">View on GitHub</a>
+      <a href="https://github.com/Blog404DE/RasPiUltraschallEntfernungsmesser/zipball/master" class="btn">Download .zip</a>
+      <a href="https://github.com/Blog404DE/RasPiUltraschallEntfernungsmesser/tarball/master" class="btn">Download .tar.gz</a>
+    </section>
 
-    <div id="content-wrapper">
-      <div class="inner clearfix">
-        <section id="main-content">
-          <h1>
+    <section class="main-content">
+      <h1>
 <a id="entfernung-messen-mit-raspberrypi" class="anchor" href="#entfernung-messen-mit-raspberrypi" aria-hidden="true"><span class="octicon octicon-link"></span></a>Entfernung messen mit RaspberryPi</h1>
 
 <h2>
@@ -37,23 +28,33 @@
 <p>Diese Anleitung beschreibt, wie man mit wenigen Bauteilen und einem RaspberryPi einen Ultraschall-basierenden Entfernungsmesser baut.</p>
 
 <h3>
-<a id="bauteil-liste" class="anchor" href="#bauteil-liste" aria-hidden="true"><span class="octicon octicon-link"></span></a>Bauteil-Liste:</h3>
+<a id="raspberry-pi-basis" class="anchor" href="#raspberry-pi-basis" aria-hidden="true"><span class="octicon octicon-link"></span></a>Raspberry Pi Basis:</h3>
 
 <ul>
-<li>1x RaspberryPi B, B+ oder 2 (inkl. Netzteil, SD bzw. MicroSD Karte, Tastatur) - ca. 60 Eur </li>
-<li>1x Steckplatine (Breadboard small+ oder full+) - ca. 8 Eur</li>
-<li>1x Steckbrücken-Set für die Steckplatine - ca. 5 Eur</li>
-<li>1x Set mit Male-Female Steckbrücken (Jumper Wires)¹ - ca. 5 Eur</li>
-<li>1x Ultraschall Messmodul HC-SR04 - ca. 5 Eur</li>
-<li>1x Widerstand mit 330Ω - ca. 2 Eur</li>
-<li>1x Widerstand mit 470Ω - ca. 2 Eur</li>
+<li>1x RaspberryPi 2 (<a href="http://amzn.to/1HWR3hM">Amazon</a>)</li>
+<li>1x MicroUSB-Netzteil (~2A) (<a href="http://amzn.to/1Cxknv6">Amazon</a>)</li>
+<li>1x 8 oder 16GB MicroSD Karte (<a href="http://amzn.to/1KZHwZT">Amazon</a>)</li>
+<li>1x USB-Tastatur oder USB Tastatur/Maus Kombi (<a href="http://amzn.to/1KZHLUF">Amazon</a>)</li>
 </ul>
 
-<p>¹ Alternativ zu den Male-Female Steckbrücken kann auch ein Breadboard-Adapter für die Verbindung zum RaspberryPi verwendet werden - ca. 8 Eur</p>
+<p>Alternativ kann auch ein Vorgänger-Modell des RaspberryPi 2 verwendet werden. Hierfür wird anstatt einer MicroSD eine SD Card benötigt. Im Prinzip kann jede USB Tastatur verwendet werden.</p>
 
-<p><strong>Gesamtkosten:</strong> Die Kosten für alle benötigten Bauteile betragen ca. 80 bis 90 Eur. </p>
+<p>Dieses Set dient als Basis für praktisch alle Raspberry Pi Projekte. Der RaspberryPi 2 bietet gegenüber seinen Vorgänger-Modellen u.a. eine höhere CPU Geschwindigkeit, mehr Arbeitsspeicher und 4 anstatt 2 USB Anschlüsse. Je nach Projekt kann dies durchaus von Vorteil sein. </p>
 
-<p>Bei den angegebenen Preise handelt es sich um Durchschnittspreise für Deutschland zum Zeitpunkt der Erstellung des Tutorials. Die benötigten Teile sollten sich bei den meisten Elektronik-Händler, die auch ein RaspberryPi im Sortiment führen, zu finden sein.</p>
+<h3>
+<a id="bauteil-liste-für-den-entfernungsmesser" class="anchor" href="#bauteil-liste-f%C3%BCr-den-entfernungsmesser" aria-hidden="true"><span class="octicon octicon-link"></span></a>Bauteil-Liste für den Entfernungsmesser:</h3>
+
+<ul>
+<li>1x Steckplatine / Breadboard small+ oder full+ (<a href="http://amzn.to/1HVmfOs">Amazon</a>)</li>
+<li>1x Steckbrücken-Set für die Steckplatine (<a href="http://amzn.to/1HokKqB">Amazon</a>)</li>
+<li>1x Set mit Male-Female Steckbrücken (Jumper Wires)¹ (<a href="http://amzn.to/1HWMDHV">Amazon</a>)</li>
+<li>1x Ultraschall Messmodul HC-SR04 (<a href="http://amzn.to/1HWMp3j">Amazon</a>)</li>
+<li>Widerstände mit 1x330Ω und 1x470Ω (z.B. im großen durchmischten Set bei <a href="http://B009K6JLSM">Amazon</a>, ansonsten einzeln bei <a href="http://www.reichelt.de/">Reichelt</a>, <a href="http://www.conrad.de/">Conrad</a> oder <a href="http://www.elv.de/">ELV</a>)</li>
+</ul>
+
+<p>¹ Alternativ zu den Male-Female Steckbrücken kann auch ein Breadboard-Adapter für die Verbindung zum RaspberryPi verwendet werden</p>
+
+<p><em>Hinweis zu den Amazon-Links:</em> Alle Artikel-Links beinhalten Amazon Partner-Links. Mit der Bestellung über diese Links unterstützen Sie dieses Blog und erlauben uns weitere RaspberryPi Projekte hier zu veröffentlichen.</p>
 
 <h3>
 <a id="funktionsweise" class="anchor" href="#funktionsweise" aria-hidden="true"><span class="octicon octicon-link"></span></a>Funktionsweise:</h3>
@@ -66,6 +67,8 @@
 <p>Distanz [cm] = (Signallaufzeit [Sek] / 2) * 34350 [cm/sek]</p>
 </blockquote>
 
+<p>Bei der Formel stellt sich vielleicht die Frage, warum eigentlich die Signallaufzeit halbiert wird. Wenn wir uns das Script genau anschauen, wird die Laufzeit des Signals direkt beim absenden des Ultraschall-Pulses angefangen zu messen und hört auf, sobald das Echo-Signal wieder am Sensor ankommt. Dies hat zwangsweise die Folge, dass ich die Zeit für den Hin- und Rückweg habe. Für die Berechnung des Abstandes brauche ich allerdings nur die Zeit, die für einen der beide Wege benötigt wird - also die hälfte des Weges. Um dies zu erreichen wird die Laufzeit einfach halbiert.</p>
+
 <h2>
 <a id="aufbau-der-hardware" class="anchor" href="#aufbau-der-hardware" aria-hidden="true"><span class="octicon octicon-link"></span></a>Aufbau der Hardware:</h2>
 
@@ -74,8 +77,8 @@
 
 <p><img src="https://github.com/Blog404DE/RasPiUltraschallEntfernungsmesser/raw/master/Bilder/HC-SR04.jpg" alt="Ultraschall Sensor"> </p>
 
-<h6>
-<a id="anschlüsse" class="anchor" href="#anschl%C3%BCsse" aria-hidden="true"><span class="octicon octicon-link"></span></a>Anschlüsse:</h6>
+<h4>
+<a id="anschlüsse" class="anchor" href="#anschl%C3%BCsse" aria-hidden="true"><span class="octicon octicon-link"></span></a>Anschlüsse:</h4>
 
 <ol>
 <li>Vcc (+5V)</li>
@@ -118,7 +121,7 @@
 <h2>
 <a id="aufbau-der-software" class="anchor" href="#aufbau-der-software" aria-hidden="true"><span class="octicon octicon-link"></span></a>Aufbau der Software</h2>
 
-<p>Für den Raspberry wird empfiehlt sich Raspbian als System zu verwenden, welches über z.B. über <a href="https://www.raspberrypi.org/downloads/">NOOB</a> installiert werden kann. Mittels eines Python-Scripts  kann die Messung durchgeführt werden.</p>
+<p>Für den RaspberryPi wird empfiehlt sich Raspbian als System zu verwenden, welches über z.B. über <a href="https://www.raspberrypi.org/downloads/">NOOB</a> installiert werden kann. Mittels eines Python-Scripts  kann die Messung durchgeführt werden.</p>
 
 <h4>
 <a id="python-script-getdistancepy" class="anchor" href="#python-script-getdistancepy" aria-hidden="true"><span class="octicon octicon-link"></span></a>Python-Script "getDistance.py"</h4>
@@ -206,17 +209,27 @@ GPIOEcho    <span class="pl-k">=</span> <span class="pl-c1">24</span>
 <h3>
 <a id="wie-führe-ich-eine-messung-aus" class="anchor" href="#wie-f%C3%BChre-ich-eine-messung-aus" aria-hidden="true"><span class="octicon octicon-link"></span></a>Wie führe ich eine Messung aus?</h3>
 
-<p>Nachdem Sie das Script auf Ihren RaspberryPi geladen haben, können Sie es direkt mittels folgendem Befehl aufrufen:</p>
+<p>Nachdem Sie das Script auf Ihren RaspberryPi geladen haben, können Sie es direkt mittels folgendem Befehl aufrufen. Bitte beachten Sie, dass der Zugriff auf die GPIO Ports nur als <em>root</em> möglich ist:</p>
 
 <blockquote>
-<p>python getDistance.py</p>
+<p>root@raspberrypi:~# python getDistance.py</p>
 </blockquote>
 
 <p>Alternativ können Sie getDistance.py auch direkt ausführbar machen und sich das "python" beim aufrufen sparen. Hierzu ist nur folgendes notwendig:</p>
 
 <blockquote>
-<p>chmod +x getDistance.py</p>
+<p>root@raspberrypi:~# chmod +x getDistance.py</p>
 </blockquote>
+
+<p>Die Ausgabe des Python Scripts sieht wie folgt aus:</p>
+
+<pre><code>root@raspberrypi:~# ./entfernung.py
+Gemessene Entfernung: 22.5 cm (Signallaufzeit: 0.6559ms)
+Gemessene Entfernung: 22.9 cm (Signallaufzeit: 0.6690ms)
+Gemessene Entfernung: 22.9 cm (Signallaufzeit: 0.6690ms)
+Gemessene Entfernung: 22.5 cm (Signallaufzeit: 0.6560ms)
+Gemessene Entfernung: 22.9 cm (Signallaufzeit: 0.6670ms)
+</code></pre>
 
 <p>Das Programm ermittelt kontinuierlich den Abstand und kann mittels <em>STRG+C</em> beendet werden. </p>
 
@@ -224,28 +237,29 @@ GPIOEcho    <span class="pl-k">=</span> <span class="pl-c1">24</span>
 
 <p><strong>Lizenz-Information:</strong></p>
 
-<p>Copyright Jens Dutzi 2015 / Stand: 28.06.2015</p>
+<p>Copyright Jens Dutzi 2015 / Stand: 12.07.2015</p>
 
 <p>Dieses Werk ist lizenziert unter der <a href="https://github.com/Blog404DE/RasPiUltraschallEntfernungsmesser/blob/master/LICENSE">MIT Lizenz</a>.</p>
-        </section>
 
-        <aside id="sidebar">
-          <a href="https://github.com/Blog404DE/RasPiUltraschallEntfernungsmesser/zipball/master" class="button">
-            <small>Download</small>
-            .zip file
-          </a>
-          <a href="https://github.com/Blog404DE/RasPiUltraschallEntfernungsmesser/tarball/master" class="button">
-            <small>Download</small>
-            .tar.gz file
-          </a>
+      <footer class="site-footer">
+        <span class="site-footer-owner"><a href="https://github.com/Blog404DE/RasPiUltraschallEntfernungsmesser">Rasberry Pi Ultraschall-Entfernungsmesser</a> is maintained by <a href="https://github.com/Blog404DE">Blog404DE</a>.</span>
 
-          <p class="repo-owner"><a href="https://github.com/Blog404DE/RasPiUltraschallEntfernungsmesser"></a> is maintained by <a href="https://github.com/Blog404DE">Blog404DE</a>.</p>
+        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> by <a href="https://twitter.com/jasonlong">Jason Long</a>.</span>
+      </footer>
 
-          <p>This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the Architect theme by <a href="https://twitter.com/jasonlong">Jason Long</a>.</p>
-        </aside>
-      </div>
-    </div>
+    </section>
 
-  
+            <script type="text/javascript">
+            var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+            document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+          </script>
+          <script type="text/javascript">
+            try {
+              var pageTracker = _gat._getTracker("UA-571228-17");
+            pageTracker._trackPageview();
+            } catch(err) {}
+          </script>
+
   </body>
 </html>
+
