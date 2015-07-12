@@ -190,6 +190,6 @@ Das Programm ermittelt kontinuierlich den Abstand und kann mittels *STRG+C* been
 ___
 **Lizenz-Information:**
 
-Copyright Jens Dutzi 2015 / Stand: 28.06.2015
+Copyright Jens Dutzi 2015 / Stand: 12.07.2015
 
 Dieses Werk ist lizenziert unter der [MIT Lizenz](https://github.com/Blog404DE/RasPiUltraschallEntfernungsmesser/blob/master/LICENSE).
